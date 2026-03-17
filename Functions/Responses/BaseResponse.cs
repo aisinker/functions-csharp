@@ -1,6 +1,5 @@
-﻿using System;
-using System.Net.Http;
-using Newtonsoft.Json;
+﻿using System.Net.Http;
+using System.Text.Json.Serialization;
 
 namespace Supabase.Functions.Responses
 {

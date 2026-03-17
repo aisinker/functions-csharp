@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Supabase.Functions
 {
@@ -23,7 +23,7 @@ namespace Supabase.Functions
             /// <summary>
             /// Body of the Request
             /// </summary>
-            [JsonProperty("body")]
+            [JsonPropertyName("body")]
             public Dictionary<string, object> Body { get; set; } = new Dictionary<string, object>();
 
             /// <summary>

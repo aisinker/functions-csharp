@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web;
-using Newtonsoft.Json;
 using Supabase.Core;
 using Supabase.Core.Extensions;
 using Supabase.Functions.Exceptions;
@@ -97,7 +97,7 @@ namespace Supabase.Functions
 
             var content = await response.Content.ReadAsStringAsync();
 
-            return JsonConvert.DeserializeObject<T>(content);
+            return (T?)JsonSerializer.Deserialize(content, typeof(T), SourceGenerationContext.Instance);
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace Supabase.Functions
 
             using var requestMessage = new HttpRequestMessage(options.HttpMethod, builder.Uri);
             requestMessage.Content = new StringContent(
-                JsonConvert.SerializeObject(options.Body),
+                JsonSerializer.Serialize(options.Body, options.Body.GetType(), SourceGenerationContext.Instance),
                 Encoding.UTF8,
                 "application/json"
             );
