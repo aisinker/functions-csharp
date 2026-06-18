@@ -9,6 +9,13 @@ namespace Supabase.Functions
     [JsonSourceGenerationOptions(WriteIndented = false)]
     [JsonSerializable(typeof(BaseResponse))]
     [JsonSerializable(typeof(Client.InvokeFunctionOptions))]
+    [JsonSerializable(typeof(int))]
+    [JsonSerializable(typeof(uint))]
+    [JsonSerializable(typeof(long))]
+    [JsonSerializable(typeof(ulong))]
+    [JsonSerializable(typeof(double))]
+    [JsonSerializable(typeof(float))]
+    [JsonSerializable(typeof(bool))]
     public partial class SourceGenerationContext : JsonSerializerContext
     {
         public static SourceGenerationContext Instance { get; } = new(new JsonSerializerOptions
